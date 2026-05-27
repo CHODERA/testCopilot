@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Table Manager</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>🎮 Game Table Manager</h1>
+            <p class="subtitle">Join rooms, start games, and have fun!</p>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Create Room Section -->
+            <section class="create-room-section">
+                <div class="section-title">Create a New Room</div>
+                <div class="create-room-form">
+                    <input 
+                        type="text" 
+                        id="roomNameInput" 
+                        placeholder="Enter room name" 
+                        maxlength="30"
+                        class="input-field"
+                    >
+                    <select id="gameTypeSelect" class="select-field">
+                        <option value="">Select a game type...</option>
+                        <option value="poker">Poker</option>
+                        <option value="blackjack">Blackjack</option>
+                        <option value="chess">Chess</option>
+                        <option value="trivia">Trivia</option>
+                        <option value="custom">Custom Game</option>
+                    </select>
+                    <input 
+                        type="number" 
+                        id="maxPlayersInput" 
+                        placeholder="Max players (2-8)" 
+                        min="2" 
+                        max="8" 
+                        value="4"
+                        class="input-field"
+                    >
+                    <button id="createRoomBtn" class="btn btn-primary">Create Room</button>
+                </div>
+            </section>
+
+            <!-- Rooms Grid -->
+            <section class="rooms-section">
+                <div class="section-title">Available Rooms</div>
+                <div id="roomsContainer" class="rooms-grid">
+                    <div class="empty-state">
+                        <p>No rooms available. Create one to get started!</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Room Detail Modal -->
+    <div id="roomModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalRoomTitle">Room Details</h2>
+                <button class="close-btn" id="closeModalBtn">&times;</button>
+            </div>
+            
+            <div class="modal-body">
+                <!-- Room Info -->
+                <div class="room-info">
+                    <div class="info-item">
+                        <span class="info-label">Game Type:</span>
+                        <span id="modalGameType" class="info-value">-</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Players:</span>
+                        <span id="modalPlayerCount" class="info-value">0/4</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Status:</span>
+                        <span id="modalRoomStatus" class="badge badge-waiting">Waiting</span>
+                    </div>
+                </div>
+
+                <!-- Players List -->
+                <div class="players-section">
+                    <div class="players-title">Players in Room:</div>
+                    <div id="playersList" class="players-list">
+                        <!-- Players will be dynamically added here -->
+                    </div>
+                </div>
+
+                <!-- User Input Section -->
+                <div class="user-section">
+                    <input 
+                        type="text" 
+                        id="playerNameInput" 
+                        placeholder="Enter your name" 
+                        maxlength="20"
+                        class="input-field"
+                    >
+                    <button id="joinRoomBtn" class="btn btn-secondary">Join Room</button>
+                </div>
+
+                <!-- Player Actions (for joined players) -->
+                <div id="playerActionsContainer" class="player-actions" style="display: none;">
+                    <button id="readyBtn" class="btn btn-success">Mark as Ready</button>
+                    <button id="notReadyBtn" class="btn btn-warning">Not Ready</button>
+                    <button id="leaveRoomBtn" class="btn btn-danger">Leave Room</button>
+                </div>
+
+                <!-- Admin Actions -->
+                <div id="adminActionsContainer" class="admin-actions" style="display: none;">
+                    <div class="admin-badge">👑 You are the Room Administrator</div>
+                    <button id="startGameBtn" class="btn btn-primary btn-large">Start Game</button>
+                    <button id="deleteRoomBtn" class="btn btn-danger">Delete Room</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
